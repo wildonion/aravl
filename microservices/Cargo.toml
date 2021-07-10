@@ -1,0 +1,37 @@
+
+
+[workspace]
+
+members = [
+    "auth",
+    "report",
+    "monitor",
+    "device",
+    "streamer",
+]
+
+
+[profile.dev.package.monitor]
+opt-level = 0
+[profile.release.package.monitor]
+opt-level = 3
+
+[profile.dev.package.auth]
+opt-level = 0
+[profile.release.package.auth]
+opt-level = 3
+
+[profile.dev.package.report]
+opt-level = 0
+[profile.release.package.report]
+opt-level = 3
+
+[profile.dev.package.device]
+opt-level = 0
+[profile.release.package.device]
+opt-level = 3
+
+[profile.dev.package.streamer]
+opt-level = 0
+[profile.release.package.streamer]
+opt-level = 3

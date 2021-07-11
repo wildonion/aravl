@@ -60,7 +60,7 @@ fn main() {
 }
 
 fn send_packet_task(){
-    // TODO - taks/job : connect to device socket server to send the packet
+    // TODO - tasks/job : connect to device socket server to send the packet
     // TODO - packet   : 000000000000003608010000016B40D8EA30010000000000000000000000000000000105021503010101425E0F01F10000601A014E0000000000000000010000C7CF
     // ...
 }

@@ -4,7 +4,7 @@
 
 * **Install prerequisite packages:** ```sudo apt install libssl-dev && sudo apt install build-essential && sudo apt install cmake && sudo apt install libpq-dev && cargo install diesel_cli --no-default-features --features postgres && cargo install systemfd cargo-watch```
 
-* **Build cassandra, postgres and adminer docker images(containers):** ```sudo docker stop $(sudo docker ps -a -q) && sudo docker-compose down -v && sudo docker-compose -f docker-compose.yml build && sudo docker-compose up -d --force-recreate --remove-orphans```
+* **Build cassandra, kafka, postgres and adminer docker images(containers):** ```sudo docker stop $(sudo docker ps -a -q) && sudo docker-compose down -v && sudo docker-compose -f docker-compose.yml build && sudo docker-compose up -d --force-recreate --remove-orphans```
 
 ## Logging
 

@@ -37,7 +37,7 @@ async fn main() -> std::io::Result<()>{
     env_logger::init();
     dotenv().expect("⚠️ .env file not found");
     let host = env::var("KAFKA_HOST").expect("⚠️ please set host in .env");
-    let secret_key = env::var("JWT_SECRET_KEY").expect("⚠️ found no jwt secret key"); // TODO - 
+    let secret_key = env::var("SECRET_KEY").expect("⚠️ found no jwt secret key"); // TODO - 
     let environment = env::var("ENVIRONMENT").expect("⚠️ no environment variable set"); // TODO -
     let node1_port = env::var("KAFKA_NODE1_PORT").expect("⚠️ please set kafka node1 port in .env"); //-- broker 1
     let node2_port = env::var("KAFKA_NODE2_PORT").expect("⚠️ please set kafka node2 port in .env"); //-- broker 2

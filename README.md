@@ -22,15 +22,19 @@
 
 * **Accessing cassandra db - node2:** ```sudo docker-compose exec cassandra-node2 cqlsh --username=avl --password=avl```
 
+* **Accessing cassandra db - node3:** ```sudo docker-compose exec cassandra-node3 cqlsh --username=avl --password=avl```
+
 * **Accessing cassandra db bash - node1:** ```sudo docker-compose exec cassandra-node1 bash```
 
 * **Accessing cassandra db bash - node2:** ```sudo docker-compose exec cassandra-node2 bash```
 
-* **Accessing kafka broker - node1:** ```sudo docker-compose exec kafka-node1 bash```
+* **Accessing cassandra db bash - node3:** ```sudo docker-compose exec cassandra-node3 bash```
 
-* **Accessing kafka broker - node2:** ```sudo docker-compose exec kafka-node2 bash```
+* **Accessing kafka broker bash - node1:** ```sudo docker-compose exec kafka-node1 bash```
 
-* **Accessing kafka broker - node3:** ```sudo docker-compose exec kafka-node3 bash```
+* **Accessing kafka broker bash - node2:** ```sudo docker-compose exec kafka-node2 bash```
+
+* **Accessing kafka broker bash - node3:** ```sudo docker-compose exec kafka-node3 bash```
 
 ## Running Microservices
 

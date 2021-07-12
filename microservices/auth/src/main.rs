@@ -43,7 +43,7 @@ async fn main() -> std::io::Result<()> { //-- return type is an empty Result obj
 
         /*
             all methods implemented in here are returned a Result object either Ok or AVL: Result<T, E>
-            db::pg::stablish::connection().await? returns a connection selected from the pool of postgres connections
+            db::pg::establish::connection().await? returns a connection selected from the pool of postgres connections
             futures won't solve unless we await on them.
             ? returns from the function with the Err, meaning that the function that includes ? syntax must return Result<T, E>
             unwrap panics on Err, meaning that the function can have any signature either<T, E> Result or Option<T>.

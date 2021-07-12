@@ -19,7 +19,7 @@ TODO -
 
 
 
-use crate::handlers::db::cass::stablish::CassSession;
+use crate::handlers::db::cass::establish::CassSession;
 use serde::{Serialize, Deserialize};
 use std::sync::Arc;
 use uuid::Uuid;

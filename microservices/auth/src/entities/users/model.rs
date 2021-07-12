@@ -12,7 +12,7 @@ use crate::handlers::error::AVL;
 use crate::schema::users;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
-use crate::handlers::db::pg::stablish as pg;
+use crate::handlers::db::pg::establish as pg;
 
 
 

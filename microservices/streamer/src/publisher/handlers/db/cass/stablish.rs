@@ -6,7 +6,7 @@
 
 
 
-use super::node; //-- super refers to the root directory of the stablish.rs file - you can also use this syntax : use crate::handlers::db::cass::node;
+use super::node; //-- super refers to the root directory of the establish.rs file - you can also use this syntax : use crate::handlers::db::cass::node;
 use cdrs_tokio::cluster::session::Session;
 use cdrs_tokio::cluster::session::new_lz4 as AVLClusterSession;
 use cdrs_tokio::cluster::{ClusterTcpConfig, TcpConnectionPool};

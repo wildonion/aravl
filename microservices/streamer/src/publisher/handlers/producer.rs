@@ -20,8 +20,8 @@
 
 
 use crate::handlers::db::cass::schemas::device::GPSData;
-use crate::handlers::db::cass::stablish as cass;
-use crate::handlers::db::pg::stablish as pg;
+use crate::handlers::db::cass::establish as cass;
+use crate::handlers::db::pg::establish as pg;
 use std::time::SystemTime;
 use rdkafka::config::ClientConfig;
 use rdkafka::message::OwnedHeaders;
@@ -34,7 +34,7 @@ pub async fn produce(brokers: &str){
 
 
 
-    let cass_session = cass::connection().await.expect("⚠️ can't stablish cassandra connection!"); //-- making cassandra pool of connections for selected node
+    let cass_session = cass::connection().await.expect("⚠️ can't establish cassandra connection!"); //-- making cassandra pool of connections for selected node
     let producer: &FutureProducer = &ClientConfig::new()
             .set("bootstrap.servers", brokers)
             .set("message.timeout.ms", "5000")
@@ -98,7 +98,7 @@ pub async fn produce(brokers: &str){
     // let topic = "device imei";
     // let fututres = (0..5)
     //     .map(|i| async move { //-- async closure for sending 5 messages or events, each with unique key
-    //         let cass_session = cass::connection().await.expect("⚠️ can't stablish cassandra connection!"); //-- making cassandra pool of connections for selected node
+    //         let cass_session = cass::connection().await.expect("⚠️ can't establish cassandra connection!"); //-- making cassandra pool of connections for selected node
     //         let device_event = GPSData::last(cass_session.clone()).await;
     //         let device_event_json = serde_json::to_string_pretty(&device_event).expect("⚠️ failed to serialize device event");
     //         let delivery_status = producer

@@ -16,7 +16,7 @@ pub mod tcp_controller{
         let tcp_listener = TcpListener::bind(&addr).await?;
         loop{ //-- loop through all incoming requests
             let (mut socket, device_addr) = tcp_listener.accept().await?;
-            println!("\n[+] CONNECTION STABLISHED FROM GPS : {} AT TIME : {:?}", device_addr, chrono::Local::now().naive_local());
+            println!("\n[+] CONNECTION establishED FROM GPS : {} AT TIME : {:?}", device_addr, chrono::Local::now().naive_local());
             //-- adding each incoming task to the channel queue then spawning multi threads per GPS data or the task which is inside the channel queue in its socket
             //-- we use async move {} block to move all the env vars before the task into the async block to have lifetime across .await
             //-- a new task is spawned for each inbound socket, the socket is moved to the new task and processed there

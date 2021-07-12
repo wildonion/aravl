@@ -66,8 +66,8 @@ mod schemas;
 mod macros;
 use crate::utils::tcp_controller;
 use crate::utils::udp_controller;
-use crate::handlers::db::cass::stablish as cass;
-use crate::handlers::db::pg::stablish as pg;
+use crate::handlers::db::cass::establish as cass;
+use crate::handlers::db::pg::establish as pg;
 use crate::schemas::device::GPSData;
 use std::env;
 use std::net::SocketAddr;
@@ -89,8 +89,8 @@ async fn main() -> std::io::Result<()>{
         let host = env::var("HOST").expect("⚠️ please set host in .env");
         let port = env::var("DEVICE_PORT").expect("⚠️ please set port in .env");
         let addr = format!("{}:{}", host, port).parse::<SocketAddr>().expect("⚠️ cannot parse the socket address"); //-- we can use ? to see the error instead of expect() to force the compiler panic with error
-        let cass_session = cass::connection().await.expect("⚠️ can't stablish cassandra connection"); //-- making cassandra pool of connections for selected node before the accepting each socket connection 
-        let pg_pool = pg::connection().await.expect("⚠️ can't stablish pg connections"); //-- making postgres pool of connections before the accepting each socket connection  
+        let cass_session = cass::connection().await.expect("⚠️ can't establish cassandra connection"); //-- making cassandra pool of connections for selected node before the accepting each socket connection 
+        let pg_pool = pg::connection().await.expect("⚠️ can't establish pg connections"); //-- making postgres pool of connections before the accepting each socket connection  
         GPSData::init(cass_session.clone()).await; //-- it'll create gps_data column family if there is not any
         println!("\n[+] Listening {} on: {}", socket_type, addr);
         

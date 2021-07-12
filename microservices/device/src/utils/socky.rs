@@ -9,7 +9,7 @@
 ////////////////////////////////////////// TCP MODULE //////////////////////////////////////////
 pub mod tcp_controller{
     use crate::handlers::{tcp::process_connection as tcp_handler};
-    use crate::handlers::db::{cass::stablish::CassSession, pg::stablish::Pool};
+    use crate::handlers::db::{cass::establish::CassSession, pg::establish::Pool};
     use tokio::net::TcpListener;
     use std::net::SocketAddr;
     use std::sync::Arc;
@@ -19,7 +19,7 @@ pub mod tcp_controller{
             let (mut socket, device_addr) = tcp_listener.accept().await?;
             let pg_pool = pg_pool.clone(); //-- cloning the immutable postgres pool connections to move it into every async GPS task scope and share between threads
             let cass_session = cass_session.clone(); //-- cloning the immutable cassandra session so we can share its ownership between multiple threads
-            println!("\n[+] CONNECTION STABLISHED FROM GPS : {} AT TIME : {:?}", device_addr, chrono::Local::now().naive_local());
+            println!("\n[+] CONNECTION establishED FROM GPS : {} AT TIME : {:?}", device_addr, chrono::Local::now().naive_local());
             //-- adding each incoming task to the channel queue then spawning multi threads per GPS data or the task which is inside the channel queue in its socket
             //-- we use async move {} block to move all the env vars before the task into the async block to have lifetime across .await
             //-- a new task is spawned for each inbound socket, the socket is moved to the new task and processed there
@@ -33,7 +33,7 @@ pub mod tcp_controller{
 ////////////////////////////////////////// UDP MODULE ////////////////////////////////////////// 
 pub mod udp_controller{
     use crate::handlers::{udp::process_connection as udp_handler};
-    use crate::handlers::db::{cass::stablish::CassSession, pg::stablish::Pool};
+    use crate::handlers::db::{cass::establish::CassSession, pg::establish::Pool};
     use tokio::sync::mpsc;
     use tokio::net::UdpSocket;
     use std::net::SocketAddr;
@@ -67,7 +67,7 @@ pub mod udp_controller{
                 ///////////// filling buffer with incoming UTF-8 bytes
                 ///////////// ========================================
                 Ok((buffer_bytes, device_addr)) => {
-                    println!("\n[+] CONNECTION STABLISHED FROM GPS : {} AT TIME : {:?}", device_addr, chrono::Local::now().naive_local());
+                    println!("\n[+] CONNECTION establishED FROM GPS : {} AT TIME : {:?}", device_addr, chrono::Local::now().naive_local());
                     match tx.send((buffer[0..buffer_bytes].to_vec(), device_addr)).await{
                         Ok(_) => {
                             // https://stackoverflow.com/questions/31012923/what-is-the-difference-between-copy-and-clone

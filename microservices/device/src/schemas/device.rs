@@ -5,7 +5,7 @@
 
 use crate::authenticity;
 use crate::utils;
-use crate::handlers::db::cass::stablish::CassSession;
+use crate::handlers::db::cass::establish::CassSession;
 use serde::{Serialize, Deserialize};
 use uuid::Uuid;
 use std::result;

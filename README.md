@@ -113,7 +113,7 @@
 * Down migration command for each table is: ```diesel migration down```
 * Adminer page address is: **http://SERVER-IP:3257**
 * _monitor_ microservice API address is: **http://SERVER-IP:7365/avl/api/monitor**
-* _device_ microservice API address is: **http://SERVER-IP:7366/avl/api/auth**
+* _auth_ microservice API address is: **http://SERVER-IP:7366/avl/api/auth**
 * _report_ microservice API address is: **http://SERVER-IP:7367/avl/api/report**
 * _device_ microservice socket address is: **SERVER-IP:8990**
 * In order to generate the `schema.rs` in _src_ folder the ```diesel migration run``` command must have a successful result

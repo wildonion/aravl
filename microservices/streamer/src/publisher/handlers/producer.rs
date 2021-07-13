@@ -57,7 +57,7 @@ pub async fn produce(brokers: &str){
             // TODO - send the last GPS data event in every iteration based on its imei topic, so we must have separate topic for each activated device based on their imei
             let device_event = GPSData::last(cass_session.clone()).await; //-- getting the last data inserted into cassandra gps_data column family
             let topic = device_event.imei.to_string(); //-- getting its imei to set it as the topic for this event
-            let device_event_json = serde_json::to_string_pretty(&device_event).expect("⚠️ failed to serialize device event"); //-- serializing the strucinto json
+            let device_event_json = serde_json::to_string_pretty(&device_event).expect("⚠️ failed to serialize device event"); //-- serializing the struct into json
             let key = &i.to_string(); //-- setting the key for this event
             let devlivery_status = producer.send_result( //-- we're using FutureRecord for sending the message or the event asynchoronously to all consumers cause send_result() method takes a FutureRecord to send a message
             FutureRecord::to(&topic)

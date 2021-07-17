@@ -8,27 +8,6 @@
 GPS emulator for sending packet and testing device microservice socket server scalability
 ------------------------------------------------------------------------------------------
 
-
-
-https://blog.softwaremill.com/multithreading-in-rust-with-mpsc-multi-producer-single-consumer-channels-db0fc91ae3fa
-https://danielkeep.github.io/tlborm/book/
-https://cetra3.github.io/blog/implementing-a-jobq/
-https://cetra3.github.io/blog/implementing-a-jobq-with-tokio/
-https://docs.rs/tokio/1.7.1/tokio/sync/index.html
-https://blog.logrocket.com/macros-in-rust-a-tutorial-with-examples/
-https://blog.logrocket.com/procedural-macros-in-rust/
-https://github.com/cksac/dataloader-rs
-http://gradebot.org/doc/ipur/trait.html
-https://doc.rust-lang.org/std/sync/struct.Arc.html
-https://doc.rust-lang.org/std/sync/struct.Mutex.html
-http://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/procedural-macros.html
-https://dev.to/5422m4n/rust-macro-rules-in-practice-40ne
-
-
-
-TODO - custom derive macro or proc_macro for my own traits using trait scope orphan rule, closures, asynchronous (async move) and multithreaded pattern to simulate thousand of GPSes
-
-
 */
 
 

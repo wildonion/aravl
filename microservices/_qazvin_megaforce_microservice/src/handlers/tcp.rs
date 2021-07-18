@@ -65,7 +65,43 @@ pub async fn process_connection(mut socket: TcpStream, mut buffer: Vec<u8>, devi
                                         println!("[+] GPS : {} | CURRENT SERVER TIME : {:?} | STATUS : ✅ | GPS DATA : {:?}", device_addr, chrono::Local::now().naive_local(), data);
                                         let params = utils::param_parser(&data, "&", "=").expect("⚠️ can't parse url params &str"); //-- data is String and will be coerce to &str
 
+                                        
+                                        
+                                        
+                                        
+                                        // ======================================= CHECKING NUMBER OF SATTELITES LOGIC =======================================
+										for (key, value) in &params {
+												if key.to_string() == "NS".to_string(){
+												if value.is_empty() == false {
+													let ns = value.parse::<i8>().unwrap();
+													if ns < 4{
+														let response = format!("\n\"status\": 200");
+														match socket.write_all(response.as_str().as_bytes()).await{
+									                        Ok(buffer_bytes) => {
+									                            println!("[+] CURRENT SERVER TIME : {:?} | STATUS : ✅ | NUMBER OF SATTELITES IS LESS THAN 4 - SENDING STATUS 200", chrono::Local::now().naive_local());
+									                        },
+									                        Err(e) => {
+									                            println!("[+] CURRENT SERVER TIME : {:?} | STATUS : ✅ | SENDING NS PROBLEM WITH STATUS : {:?}", chrono::Local::now().naive_local(), e);
+									                        }
+									                    }
+														continue;
+													}
+												} else{
+													let response = format!("\n\"status\": 200");
+													match socket.write_all(response.as_str().as_bytes()).await{
+									                       Ok(buffer_bytes) => {
+									                           println!("[+] CURRENT SERVER TIME : {:?} | STATUS : ✅ | UNKNOWN NUMBER OF SATTELITES - SENDING STATUS 200", chrono::Local::now().naive_local());
+									                       },
+									                       Err(e) => {
+									                           println!("[+] CURRENT SERVER TIME : {:?} | STATUS : ✅ | SENDING NS PROBLEM WITH STATUS : {:?}", chrono::Local::now().naive_local(), e);
+									                       }
+									                }
+													println!("[!] WARNING ================= UNKNOWN NUMBER OF SATELLITES");
+												}
+											}
 
+										}
+										// =====================================================================================================================
 
 
 

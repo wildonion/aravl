@@ -109,8 +109,10 @@ pub async fn process_connection(mut socket: TcpStream, mut buffer: Vec<u8>, devi
 
 
 
-                                        ///////////// ====================== POST GPS DATA TO INOBI TRACCAR SERVER ======================
-                                        // match reqwest::Client::builder().build(){
+                                        ///////////// ====================== POST GPS DATA TO INOBI TRACCAR SERVER IF THE NUMBER OF SATTELITES ARE EQUALS OR MORE THAN 4 ======================
+                                        // TODO - check NS param value before sending it to traccar
+					// ...
+					// match reqwest::Client::builder().build(){
                                         //     Ok(client) => {
                                         //         let url = format!("http://localhost:5055/?{}", data); 
                                         //         match client.post(url).send().await{ // NOTE - client future won't solve unless we await on it and once it gets solved we'll fall into the following arms

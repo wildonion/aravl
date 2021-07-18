@@ -75,6 +75,7 @@ pub mod udp_controller{
                             // NOTE - we couldn't put the tokio::spawn() in here cause the rx or the receiver will be moved inside the first iteration of the loop
                             // NOTE - we can’t just pass the receiver between multiple threads cause trait Copy is not implemented for the receiver
                             // NOTE - we can't have a clone from the receiver in mpsc protocol to fix the issue cause if a type is Copy it must have Clone also and its Clone needs to return *self
+                            // NOTE - can't clone a data structure unless the trait Clone is implemented for that otherwise in order to move it between threads we have to clone it using Arc
                             // NOTE - every Copy type is also required to be Clone and if T: Copy, x: T, and y: &T, then let x = y.clone(); is equivalent to let x = *y;
                             // NOTE - when we derive a Copy implementation Clone is also required cause it's a supertrait of Copy.
                         },

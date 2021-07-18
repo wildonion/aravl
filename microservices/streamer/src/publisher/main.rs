@@ -4,19 +4,6 @@
 
 
 
-/*
-
-    we can’t just pass the receiver between multiple threads cause trait Copy is not implemented for the receiver thus we can’t clone it to fix the issue cause if a type is Copy its Clone needs to return *self.
-    Multiple producer means multiple threads own the receiver and single consumer means only one of them can mutate and get the job or task from the receiver at a time.
-    to fix the issue we have to take an atomic reference from the receiver using Arc in order to clone it for passing between multiple threads and for mutating it we have to 
-    put it inside a Mutex to insure that only one thread can change the content of the receiver at a time. this is done by waiting on the receiver until a job or task becomes 
-    available to the down side of the channel then locking on the receiver to acquire the mutex.
-    the receiver of tokio mpsc channel is shareable between tokio::spawn() threads so we don’t need to take an atomic reference and put it inside the Mutex.
-
-*/
-
-
-
 
 mod handlers;
 use std::env;

@@ -121,7 +121,17 @@ pub async fn process_connection(mut receiver: Receiver::<(Vec<u8>, SocketAddr)>,
 
 
 
+                                        
+                                            
 
+                                            
+                                        // TODO - fetching rows from some table
+                                        // ...
+                                        // let mut conn = pg_pool.get().unwrap();
+                                        // let some_id_for_fetch = 23;
+                                        // let fetch_statement = conn.prepare("SELECT some_column FROM some_table WHERE some_thing = $1").unwrap();
+                                        // let rows = conn.query(&fetch_statement, &[&some_id_for_fetch]).unwrap();
+                                        // let device_id: String = rows[0].get(0); //-- getting the first row of the first column
 
 
 

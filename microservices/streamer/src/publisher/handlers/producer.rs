@@ -41,7 +41,7 @@ pub async fn produce(brokers: &str){
 
 
 
-
+    let pg_pool = pg::connection().await.expect("⚠️ can't establish pg connections"); //-- making postgres pool of connections before the accepting each socket connection
     let cass_session = cass::connection().await.expect("⚠️ can't establish cassandra connection!"); //-- making cassandra pool of connections for selected node
     let producer: &FutureProducer = &ClientConfig::new()
             .set("bootstrap.servers", brokers)
@@ -54,12 +54,19 @@ pub async fn produce(brokers: &str){
     
     
     
-    
+    let pg_pool = pg_pool.clone(); //-- cloning the immutable postgres pool connections to move it into every async task scope and share between tokio::spawn() threads
     let cass_session = cass_session.clone(); //-- cloning the immutable cassandra session so we can share its ownership between multiple threads
     let producer = producer.clone(); //-- we're clonning the producer cause we want to move it between tokio::spawn() threads thus according to rust ownership we have to take a reference to the producer using clone() cause trait Copy is not imeplemented for that
     tokio::spawn(async move{
         let mut i = 0_usize;
         loop {
+            // TODO - fetching rows from some table
+            // ...
+            // let mut conn = pg_pool.get().unwrap();
+            // let some_id_for_fetch = 23;
+            // let fetch_statement = conn.prepare("SELECT some_column FROM some_table WHERE some_thing = $1").unwrap();
+            // let rows = conn.query(&fetch_statement, &[&some_id_for_fetch]).unwrap();
+            // let device_id: String = rows[0].get(0); //-- getting the first row of the first column
             // TODO - https://itnext.io/getting-started-with-kafka-and-rust-part-1-e0074961ec6b
             // TODO - publish cassandra GPS data every n seconds using kafka streamer which is a multithreaded async task handler with mpsc or mpmc job queue channel protocol
             // TODO - send the last GPS data event in every iteration based on its imei topic, so we must have separate topic for each activated device based on their imei

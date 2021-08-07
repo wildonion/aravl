@@ -2,6 +2,7 @@
 
 
 Borrowing and Ownership Rules:
+    [+] closures are lazy and do nothing unless called and compiler doesn’t know how much space it will need to store the closure so in order to return the closure in function signature we must put the closure inside the Box or use &dyn
     [+] Vec<&dyn Fn(i32) -> i32> is a vector of i32 closures because Fn is an object safe trait which is not bounded to Sized trait means compiler doesn't know how much space it will need to store the closure thus we must get a reference to Fn using &dyn or Box<dyn Fn(i32) -> i32>
     [+] Fn, FnMut, and FnOnce can be bounded an object safe trait bounds to closure arguments
     [+] &T and &mut T will be coerced into raw pointers *const T or *mut T respectively
@@ -119,3 +120,17 @@ Borrowing and Ownership Rules:
             let p1 = PointCloneOnly { x: 0. };
             let p2 = p1; // because type has no `Copy`, this is a move instead. to avoid moving we can clone the p1
             println!("{:?} {:?}", p1, p2);
+            
+        // ------------------------------ returning closure in function signature ------------------------------
+        fn return_cls() -> Box<dyn Fn(i32) -> i32> {
+            Box::new(|x| x + 1)
+        }
+        let cls = return_cls()(32);
+        let csl = return_cls();
+        cls(32);
+        
+        
+        
+        
+        
+        

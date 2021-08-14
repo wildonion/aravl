@@ -78,6 +78,7 @@ pub mod udp_controller{
                             // NOTE - can't clone a data structure unless the trait Clone is implemented for that otherwise in order to move it between threads we have to clone it using Arc
                             // NOTE - every Copy type is also required to be Clone and if T: Copy, x: T, and y: &T, then let x = y.clone(); is equivalent to let x = *y;
                             // NOTE - when we derive a Copy implementation Clone is also required cause it's a supertrait of Copy.
+                            // NOTE - in order to share the receiver between threads we have to use Arc::clone()
                         },
                         Err(e) => {
                             println!("[!] CURRENT SERVER TIME : {:?} | MPSC CHANNEL STATUS : ❓ - {:?}", chrono::Local::now().naive_local(), e);
